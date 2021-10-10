@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Linear Algebra Notes</title>
+  <meta name="description" content="Linear Algebra Notes">
+  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+
+  <meta property="og:title" content="Linear Algebra Notes" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Linear Algebra Notes" />
+  
+  
+  
+
+<meta name="author" content="Lingyun Zhang">
+
+
+<meta name="date" content="2021-10-10">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="index.html">
+
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="looking-into-matrices.html"><a href="looking-into-matrices.html"><i class="fa fa-check"></i><b>1</b> Looking into matrices</a><ul>
+<li class="chapter" data-level="1.1" data-path="looking-into-matrices.html"><a href="looking-into-matrices.html#column-and-row-vectors"><i class="fa fa-check"></i><b>1.1</b> Column and row vectors</a></li>
+<li class="chapter" data-level="1.2" data-path="looking-into-matrices.html"><a href="looking-into-matrices.html#definition-of-a-matrix"><i class="fa fa-check"></i><b>1.2</b> Definition of a matrix</a></li>
+<li class="chapter" data-level="1.3" data-path="looking-into-matrices.html"><a href="looking-into-matrices.html#transpose"><i class="fa fa-check"></i><b>1.3</b> Transpose</a></li>
+<li class="chapter" data-level="1.4" data-path="looking-into-matrices.html"><a href="looking-into-matrices.html#a-matrix-times-a-vector"><i class="fa fa-check"></i><b>1.4</b> A matrix times a vector</a></li>
+<li class="chapter" data-level="1.5" data-path="looking-into-matrices.html"><a href="looking-into-matrices.html#column-space-of-boldsymbol-a_mtimes-n"><i class="fa fa-check"></i><b>1.5</b> Column space of <span class="math inline">\({\boldsymbol A}_{m\times n}\)</span></a></li>
+<li class="chapter" data-level="1.6" data-path="looking-into-matrices.html"><a href="looking-into-matrices.html#rank-of-a-matrix"><i class="fa fa-check"></i><b>1.6</b> Rank of a matrix</a></li>
+<li class="chapter" data-level="1.7" data-path="looking-into-matrices.html"><a href="looking-into-matrices.html#representing-a-matrix-as-cr-and-cmr"><i class="fa fa-check"></i><b>1.7</b> Representing a matrix as CR and CMR</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Linear Algebra Notes</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="looking-into-matrices" class="section level1">
+<h1><span class="header-section-number">1</span> Looking into matrices</h1>
+<p>If not specifically stated, all the numbers that we use are real.</p>
+<div id="column-and-row-vectors" class="section level2">
+<h2><span class="header-section-number">1.1</span> Column and row vectors</h2>
+<p>We use bold lowercase letters to denote vectors. All the vectors are <em>column vectors</em>; if we need <em>row vector</em>, then we use <em>transpose</em> <span class="math inline">\(T\)</span>.</p>
+<p><strong>Examples:</strong></p>
+<ul>
+<li><span class="math inline">\({\boldsymbol a}^T = (1,\ 2,\ 3)\)</span></li>
+<li><span class="math inline">\({\boldsymbol b}^T= (1,\ 0,\ 0)\)</span></li>
+<li><span class="math inline">\({\boldsymbol x}^T= (1/2,\ 1/3,\ 1/4)\)</span></li>
+</ul>
+</div>
+<div id="definition-of-a-matrix" class="section level2">
+<h2><span class="header-section-number">1.2</span> Definition of a matrix</h2>
+<p>Let <span class="math inline">\(m\)</span> and <span class="math inline">\(n\)</span> be positive integers. <span class="math inline">\({\boldsymbol A}_{m\times n}\)</span> is <em>matrix</em>—it’s an <span class="math inline">\(m\)</span>-by-<span class="math inline">\(n\)</span> table, containing <span class="math inline">\(m\times n\)</span> numbers.</p>
+<p><strong>Element picture:</strong> <span class="math display">\[
+{\boldsymbol A}_{m\times n} = \left[a_{ij}\right].
+\]</span></p>
+<p><strong>Column picture:</strong> <span class="math display">\[
+{\boldsymbol A}_{m\times n} = 
+\left[
+{\boldsymbol c}_1,\ \ldots,\ {\boldsymbol c}_n
+\right],
+\]</span> where <span class="math inline">\({\boldsymbol c}_i\in {\mathbf R}^n\)</span> for <span class="math inline">\(i=1,\ldots,\ n.\)</span></p>
+<p><strong>Row picture:</strong> <span class="math display">\[
+{\boldsymbol A}_{m\times n} = 
+\left[
+\begin{array}{c}
+{\boldsymbol r}_1^T\\
+\vdots\\
+{\boldsymbol r}_m^T
+\end{array}
+\right],
+\]</span> where <span class="math inline">\({\boldsymbol r}_i\in {\mathbf R}^n\)</span> for <span class="math inline">\(i=1, \ldots, m\)</span>.</p>
+</div>
+<div id="transpose" class="section level2">
+<h2><span class="header-section-number">1.3</span> Transpose</h2>
+<p><span class="math display">\[
+{\boldsymbol A}^T=
+\left[
+\begin{array}{c}
+{\boldsymbol c}_1^T\\
+\vdots\\
+{\boldsymbol c}_n^T
+\end{array}
+\right]=
+\left[
+{\boldsymbol r}_1,\ \ldots,\ {\boldsymbol r}_m
+\right],
+\]</span> which is an <span class="math inline">\(n\)</span>-by-<span class="math inline">\(m\)</span> matrix.</p>
+</div>
+<div id="a-matrix-times-a-vector" class="section level2">
+<h2><span class="header-section-number">1.4</span> A matrix times a vector</h2>
+<p>By row: it’s <em>inner product</em> of rows; by column: it’s <strong>linear combination of columns</strong>. For example <span class="math display">\[
+\left[
+\begin{array}{ccc}
+1 &amp; 2\\
+3 &amp; 4\\
+5 &amp; 6
+\end{array}
+\right]
+\left[
+\begin{array}{c}
+x_1\\
+x_2
+\end{array}
+\right]=\left[
+\begin{array}{r}
+x_1+2x_2\\
+3x_1+4x_2\\
+5x_1+6x_2
+\end{array}
+\right],
+\]</span> or <span class="math display">\[
+\left[
+\begin{array}{ccc}
+1 &amp; 2\\
+3 &amp; 4\\
+5 &amp; 6
+\end{array}
+\right]
+\left[
+\begin{array}{c}
+x_1\\
+x_2
+\end{array}
+\right]=x_1\left[
+\begin{array}{c}
+1\\
+3\\
+5
+\end{array}
+\right]+
+x_2\left[
+\begin{array}{c}
+2\\
+4\\
+6
+\end{array}
+\right].
+\]</span></p>
+</div>
+<div id="column-space-of-boldsymbol-a_mtimes-n" class="section level2">
+<h2><span class="header-section-number">1.5</span> Column space of <span class="math inline">\({\boldsymbol A}_{m\times n}\)</span></h2>
+<p>The column space is <span class="math display">\[
+Col({\boldsymbol A}_{m\times n})= \left\{
+{\boldsymbol y}: {\boldsymbol y} = {\boldsymbol A}{\boldsymbol x},\ \hbox{where}\ {\boldsymbol x}\in {\mathbf R}^n  
+\right\}.
+\]</span></p>
+<p>A bunch of vectors are <em>linearly independent</em>, if there is only <strong>one way</strong> to represent the zero vector as a linear combination of these vectors; or, equivalently, if any one of them cannot be represented as a linear combination of the others.</p>
+<p>The <strong>basis</strong> of <span class="math inline">\(Col({\boldsymbol A})\)</span> consists of a subset of the columns of <span class="math inline">\({\boldsymbol A}\)</span>, such that a) these columns are linearly independent, b) any a column of <span class="math inline">\({\boldsymbol A}\)</span> is a linear combination of these columns.</p>
+</div>
+<div id="rank-of-a-matrix" class="section level2">
+<h2><span class="header-section-number">1.6</span> Rank of a matrix</h2>
+<p>The rank of a matrix is the dimension of its column space.</p>
+<p>To find rank of a matrix, we need to find a basis of its column space, for this, an algorithm is: if column 1 is not all zeros, keep it; if column 2 is not a multiple of column 1, keep it; if column 3 is not a linear combination of columns 1 and 2, keep it. <em>Continue</em> this way until find all the columns that forms a basis.</p>
+<p><strong>It can be shown that</strong> <span class="math display">\[
+\hbox{rank}({\boldsymbol A})=
+\hbox{rank}({\boldsymbol A}^T)=
+\hbox{rank}({\boldsymbol A}^T{\boldsymbol A})=\hbox{rank}({\boldsymbol A}{\boldsymbol A}^T).
+\]</span></p>
+</div>
+<div id="representing-a-matrix-as-cr-and-cmr" class="section level2">
+<h2><span class="header-section-number">1.7</span> Representing a matrix as CR and CMR</h2>
+<p>The letters in CR and CMR stand for <strong>C</strong>olumn, <strong>R</strong>ow and <strong>M</strong>ixing.</p>
+<p>In the CR and CMR expressions, columns of matrix <span class="math inline">\({\boldsymbol C}\)</span> is a basis of <span class="math inline">\(Col({\boldsymbol A})\)</span> and they are directly from <span class="math inline">\({\boldsymbol A}\)</span>. In the CMR expression, rows of matrix <span class="math inline">\({\boldsymbol R}\)</span> is a basis of row space of <span class="math inline">\({\boldsymbol A}\)</span> and they are directly from the rows of <span class="math inline">\({\boldsymbol A}\)</span>.</p>
+<p>The CR and CMR expressions both show that column and row ranks of a matrix are the same.</p>
+<p><strong>Example:</strong> CR expression <span class="math display">\[
+\left[
+\begin{array}{ccc}
+1 &amp; 2 &amp; 3\\
+4 &amp; 5 &amp; 6\\
+7 &amp; 8 &amp; 9
+\end{array}
+\right]=
+\left[
+\begin{array}{cc}
+1 &amp; 2\\
+4 &amp; 5\\
+7 &amp; 8
+\end{array}
+\right]\left[
+\begin{array}{ccr}
+1 &amp; 0 &amp; -1\\
+0 &amp; 1 &amp; 2
+\end{array}
+\right].
+\]</span></p>
+<p><strong>Example:</strong> CMR expression <span class="math display">\[
+\left[
+\begin{array}{ccc}
+1 &amp; 2 &amp; 3\\
+4 &amp; 5 &amp; 6\\
+7 &amp; 8 &amp; 9
+\end{array}
+\right]=
+\left[
+\begin{array}{cc}
+1 &amp; 2\\
+4 &amp; 5\\
+7 &amp; 8
+\end{array}
+\right]\left[
+\begin{array}{rr}
+-\frac{5}{3} &amp; \frac{2}{3}\\
+\frac{4}{3} &amp; -\frac{1}{3}
+\end{array}
+\right]\left[
+\begin{array}{ccc}
+1 &amp; 2 &amp; 3\\
+4 &amp; 5 &amp; 6
+\end{array}
+\right].
+\]</span></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"linkedin": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "";
+    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:" && /^https?:/.test(src))
+      src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
