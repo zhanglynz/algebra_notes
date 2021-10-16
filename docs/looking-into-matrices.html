@@ -25,7 +25,7 @@
 <meta name="author" content="Lingyun Zhang">
 
 
-<meta name="date" content="2021-10-10">
+<meta name="date" content="2021-10-17">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -33,7 +33,7 @@
   
   
 <link rel="prev" href="index.html">
-
+<link rel="next" href="the-four-subspaces.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -71,7 +71,13 @@
 <li class="chapter" data-level="1.5" data-path="looking-into-matrices.html"><a href="looking-into-matrices.html#column-space-of-boldsymbol-a_mtimes-n"><i class="fa fa-check"></i><b>1.5</b> Column space of <span class="math inline">\({\boldsymbol A}_{m\times n}\)</span></a></li>
 <li class="chapter" data-level="1.6" data-path="looking-into-matrices.html"><a href="looking-into-matrices.html#rank-of-a-matrix"><i class="fa fa-check"></i><b>1.6</b> Rank of a matrix</a></li>
 <li class="chapter" data-level="1.7" data-path="looking-into-matrices.html"><a href="looking-into-matrices.html#representing-a-matrix-as-cr-and-cmr"><i class="fa fa-check"></i><b>1.7</b> Representing a matrix as CR and CMR</a></li>
+<li class="chapter" data-level="1.8" data-path="looking-into-matrices.html"><a href="looking-into-matrices.html#matrix-multiplication"><i class="fa fa-check"></i><b>1.8</b> Matrix multiplication</a></li>
 </ul></li>
+<li class="chapter" data-level="2" data-path="the-four-subspaces.html"><a href="the-four-subspaces.html"><i class="fa fa-check"></i><b>2</b> The four subspaces</a><ul>
+<li class="chapter" data-level="2.1" data-path="the-four-subspaces.html"><a href="the-four-subspaces.html#column-and-null-spaces"><i class="fa fa-check"></i><b>2.1</b> Column and null spaces</a></li>
+<li class="chapter" data-level="2.2" data-path="the-four-subspaces.html"><a href="the-four-subspaces.html#ranks-inequalities"><i class="fa fa-check"></i><b>2.2</b> Ranks inequalities</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="elimination-and-lu.html"><a href="elimination-and-lu.html"><i class="fa fa-check"></i><b>3</b> Elimination and LU</a></li>
 </ul>
 
       </nav>
@@ -113,7 +119,7 @@
 \left[
 {\boldsymbol c}_1,\ \ldots,\ {\boldsymbol c}_n
 \right],
-\]</span> where <span class="math inline">\({\boldsymbol c}_i\in {\mathbf R}^n\)</span> for <span class="math inline">\(i=1,\ldots,\ n.\)</span></p>
+\]</span> where <span class="math inline">\({\boldsymbol c}_i\in {\mathbf R}^m\)</span> for <span class="math inline">\(i=1,\ldots,\ n.\)</span></p>
 <p><strong>Row picture:</strong> <span class="math display">\[
 {\boldsymbol A}_{m\times n} = 
 \left[
@@ -215,7 +221,7 @@ Col({\boldsymbol A}_{m\times n})= \left\{
 <div id="representing-a-matrix-as-cr-and-cmr" class="section level2">
 <h2><span class="header-section-number">1.7</span> Representing a matrix as CR and CMR</h2>
 <p>The letters in CR and CMR stand for <strong>C</strong>olumn, <strong>R</strong>ow and <strong>M</strong>ixing.</p>
-<p>In the CR and CMR expressions, columns of matrix <span class="math inline">\({\boldsymbol C}\)</span> is a basis of <span class="math inline">\(Col({\boldsymbol A})\)</span> and they are directly from <span class="math inline">\({\boldsymbol A}\)</span>. In the CMR expression, rows of matrix <span class="math inline">\({\boldsymbol R}\)</span> is a basis of row space of <span class="math inline">\({\boldsymbol A}\)</span> and they are directly from the rows of <span class="math inline">\({\boldsymbol A}\)</span>.</p>
+<p>In the CR and CMR expressions, columns of matrix <span class="math inline">\({\boldsymbol C}\)</span> is a basis of <span class="math inline">\(Col({\boldsymbol A})\)</span> and they are directly from <span class="math inline">\({\boldsymbol A}\)</span>. In the CMR expression, transpose of rows of matrix <span class="math inline">\({\boldsymbol R}\)</span> is a basis of row space of <span class="math inline">\({\boldsymbol A}\)</span> and they are directly from the rows of <span class="math inline">\({\boldsymbol A}\)</span>.</p>
 <p>The CR and CMR expressions both show that column and row ranks of a matrix are the same.</p>
 <p><strong>Example:</strong> CR expression <span class="math display">\[
 \left[
@@ -264,6 +270,54 @@ Col({\boldsymbol A}_{m\times n})= \left\{
 \end{array}
 \right].
 \]</span></p>
+</div>
+<div id="matrix-multiplication" class="section level2">
+<h2><span class="header-section-number">1.8</span> Matrix multiplication</h2>
+<p>Let <span class="math display">\[
+{\boldsymbol A}_{m\times n}=[a_{ij}],
+\]</span> and <span class="math display">\[
+{\boldsymbol B}_{n\times p}=[b_{ij}].
+\]</span></p>
+<p>Two pictures of matrix multiplication:</p>
+<ul>
+<li><p>row times column <span class="math display">\[
+{\boldsymbol AB}=[c_{ij}],
+\]</span> where <span class="math display">\[
+c_{ij}=\sum_{k=1}^n a_{ik}b_{kj}.
+\]</span></p></li>
+<li><p>column times row <span class="math display">\[
+{\boldsymbol AB}=\left[{\boldsymbol a}_1, \ldots, {\boldsymbol a}_n\right]\left[
+\begin{array}{c}
+{\boldsymbol b}_1^T\\
+\vdots\\
+{\boldsymbol b}_n^T
+\end{array}
+\right]=\sum_{i=1}^n{\boldsymbol a}_i{\boldsymbol b}_i^T.
+\]</span> Note that <span class="math display">\[
+\hbox{rank}({\boldsymbol a}_i{\boldsymbol b}_i^T)\le 1,\ \hbox{for}\ i=1, \ldots, n.
+\]</span></p></li>
+</ul>
+<p><strong>Example:</strong> <span class="math inline">\({\boldsymbol S}_{n\times n}\)</span> is a symmetric matrix. Then <span class="math display">\[
+\begin{align}
+{\boldsymbol S}&amp;={\boldsymbol Q}
+\left[
+\begin{array}{ccc}
+\lambda_1 &amp;  &amp;\\
+&amp; \ddots &amp;\\
+&amp;&amp;\lambda_n
+\end{array}
+\right]{\boldsymbol Q}^T\\
+&amp;=\left[
+\lambda_1{\boldsymbol q}_1, \ldots, \lambda_n{\boldsymbol q}_n\right]\left[
+\begin{array}{c}
+{\boldsymbol q}_1^T,\\
+\vdots,\\
+{\boldsymbol q}_n^T
+\end{array}
+\right]\\
+&amp;=\sum_{i=1}^n\lambda_i{\boldsymbol q}_i{\boldsymbol q}_i^T,
+\end{align}
+\]</span> where <span class="math inline">\(\lambda_i\)</span> and <span class="math inline">\({\boldsymbol q}_i\)</span> are the <span class="math inline">\(i\)</span>th eigenvalue and eigenvector of <span class="math inline">\({\boldsymbol S}\)</span>, respectively.</p>
 
 </div>
 </div>
@@ -272,8 +326,8 @@ Col({\boldsymbol A}_{m\times n})= \left\{
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="the-four-subspaces.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

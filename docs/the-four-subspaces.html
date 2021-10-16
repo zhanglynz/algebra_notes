@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-
-<link rel="next" href="looking-into-matrices.html">
+<link rel="prev" href="looking-into-matrices.html">
+<link rel="next" href="elimination-and-lu.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -95,23 +95,53 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="header">
-<h1 class="title">Linear Algebra Notes</h1>
-<h4 class="author"><em>Lingyun Zhang</em></h4>
-<h4 class="date"><em>2021-10-17</em></h4>
+<div id="the-four-subspaces" class="section level1">
+<h1><span class="header-section-number">2</span> The four subspaces</h1>
+<div id="column-and-null-spaces" class="section level2">
+<h2><span class="header-section-number">2.1</span> Column and null spaces</h2>
+<p>Given matrix <span class="math inline">\({\boldsymbol A}_{m\times n}\)</span>, we have four subspaces:</p>
+<ul>
+<li>column space <span class="math inline">\(col({\boldsymbol A})\)</span></li>
+<li>row space <span class="math inline">\(col({\boldsymbol A}^T)\)</span></li>
+<li>null space <span class="math inline">\(null({\boldsymbol A})\)</span></li>
+<li>left null space <span class="math inline">\(null({\boldsymbol A}^T)\)</span></li>
+</ul>
+<p>Suppose that <span class="math display">\[
+\hbox{rank}({\boldsymbol A})=r,
+\]</span> then <span class="math display">\[
+col({\boldsymbol A}) \oplus null({\boldsymbol A}^T)={\boldsymbol R}^m,
+\]</span> and <span class="math display">\[
+col({\boldsymbol A}^T) \oplus null({\boldsymbol A})={\boldsymbol R}^n,
+\]</span> where <span class="math inline">\(\oplus\)</span> is for <em>direct sum</em>.</p>
 </div>
-<div id="preface" class="section level1 unnumbered">
-<h1>Preface</h1>
-<p>To be written.</p>
+<div id="ranks-inequalities" class="section level2">
+<h2><span class="header-section-number">2.2</span> Ranks inequalities</h2>
+<ol style="list-style-type: decimal">
+<li><span class="math display">\[
+\hbox{rank}({\boldsymbol A}{\boldsymbol B})\le \min\{\hbox{rank}({\boldsymbol A}),\ \hbox{rank}({\boldsymbol B})\}
+\]</span></li>
+<li><span class="math display">\[
+\hbox{rank}({\boldsymbol A}+{\boldsymbol B})\le \hbox{rank}({\boldsymbol A})+ \hbox{rank}({\boldsymbol B})
+\]</span></li>
+<li><span class="math display">\[
+\hbox{rank}({\boldsymbol A})=\hbox{rank}({\boldsymbol A}^T)=\hbox{rank}({\boldsymbol A}{\boldsymbol A}^T)=\hbox{rank}({\boldsymbol A}^T{\boldsymbol A})
+\]</span></li>
+<li>Given <span class="math inline">\({\boldsymbol A}_{m\times r}\)</span> and <span class="math inline">\({\boldsymbol B}_{r\times n}\)</span>, if <span class="math display">\[
+\hbox{rank}({\boldsymbol A})=\hbox{rank}({\boldsymbol B})=r,
+\]</span> then <span class="math display">\[
+\hbox{rank}({\boldsymbol A}{\boldsymbol B})=r.
+\]</span></li>
+</ol>
 
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-
-<a href="looking-into-matrices.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="looking-into-matrices.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="elimination-and-lu.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

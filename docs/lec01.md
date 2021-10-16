@@ -28,7 +28,7 @@ $$
 {\boldsymbol c}_1,\ \ldots,\ {\boldsymbol c}_n
 \right],
 $$
-where ${\boldsymbol c}_i\in {\mathbf R}^n$ for $i=1,\ldots,\ n.$
+where ${\boldsymbol c}_i\in {\mathbf R}^m$ for $i=1,\ldots,\ n.$
 
 **Row picture:**
 $$
@@ -145,7 +145,7 @@ $$
 
 The letters in CR and CMR stand for **C**olumn, **R**ow and **M**ixing.
 
-In the CR and CMR expressions, columns of matrix ${\boldsymbol C}$ is a basis of $Col({\boldsymbol A})$ and they are directly from ${\boldsymbol A}$. In the CMR expression, rows of matrix ${\boldsymbol R}$ is a basis of row space of ${\boldsymbol A}$ and they are directly from the rows of ${\boldsymbol A}$.
+In the CR and CMR expressions, columns of matrix ${\boldsymbol C}$ is a basis of $Col({\boldsymbol A})$ and they are directly from ${\boldsymbol A}$. In the CMR expression, transpose of rows of matrix ${\boldsymbol R}$ is a basis of row space of ${\boldsymbol A}$ and they are directly from the rows of ${\boldsymbol A}$.
 
 The CR and CMR expressions both show that column and row ranks of a matrix are the same.
 
@@ -200,4 +200,63 @@ $$
 \right].
 $$
 
+## Matrix multiplication
 
+Let 
+$$
+{\boldsymbol A}_{m\times n}=[a_{ij}],
+$$
+and
+$$
+{\boldsymbol B}_{n\times p}=[b_{ij}].
+$$
+
+Two pictures of matrix multiplication:
+
+- row times column
+$$
+{\boldsymbol AB}=[c_{ij}],
+$$
+where 
+$$
+c_{ij}=\sum_{k=1}^n a_{ik}b_{kj}.
+$$
+
+- column times row
+$$
+{\boldsymbol AB}=\left[{\boldsymbol a}_1, \ldots, {\boldsymbol a}_n\right]\left[
+\begin{array}{c}
+{\boldsymbol b}_1^T\\
+\vdots\\
+{\boldsymbol b}_n^T
+\end{array}
+\right]=\sum_{i=1}^n{\boldsymbol a}_i{\boldsymbol b}_i^T.
+$$
+Note that
+$$
+\hbox{rank}({\boldsymbol a}_i{\boldsymbol b}_i^T)\le 1,\ \hbox{for}\ i=1, \ldots, n.
+$$
+
+**Example:** ${\boldsymbol S}_{n\times n}$ is a symmetric matrix. Then
+$$
+\begin{align}
+{\boldsymbol S}&={\boldsymbol Q}
+\left[
+\begin{array}{ccc}
+\lambda_1 &  &\\
+& \ddots &\\
+&&\lambda_n
+\end{array}
+\right]{\boldsymbol Q}^T\\
+&=\left[
+\lambda_1{\boldsymbol q}_1, \ldots, \lambda_n{\boldsymbol q}_n\right]\left[
+\begin{array}{c}
+{\boldsymbol q}_1^T,\\
+\vdots,\\
+{\boldsymbol q}_n^T
+\end{array}
+\right]\\
+&=\sum_{i=1}^n\lambda_i{\boldsymbol q}_i{\boldsymbol q}_i^T,
+\end{align}
+$$
+where $\lambda_i$ and ${\boldsymbol q}_i$ are the $i$th eigenvalue and eigenvector of ${\boldsymbol S}$, respectively.
