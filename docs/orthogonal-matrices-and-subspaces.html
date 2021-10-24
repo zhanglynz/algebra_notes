@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="the-four-subspaces.html">
-<link rel="next" href="orthogonal-matrices-and-subspaces.html">
+<link rel="prev" href="elimination-and-lu.html">
+<link rel="next" href="eigenvalues-and-eigenvectors.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -108,81 +108,73 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="elimination-and-lu" class="section level1">
-<h1><span class="header-section-number">3</span> Elimination and LU</h1>
-<div id="elimination" class="section level2">
-<h2><span class="header-section-number">3.1</span> Elimination</h2>
-<p>To solve <span class="math display">\[
-{\boldsymbol Ax}={\boldsymbol b},
-\]</span> we use the (Gaussian) elimination method. Elimination means that a) we “knock out” a variable each time, and finally we have an equation like <span class="math display">\[
-kx_n=b^\ast,
-\]</span> from which we have <span class="math display">\[
-x_n=\frac{b^\ast}{k};
-\]</span> (b) working backwards to have <span class="math inline">\(x_{n-1},\ldots, x_1\)</span>. We do <strong>elementary row operation</strong> in the elimination process.</p>
-<p><strong>Example:</strong> Express <span class="math display">\[
-\left[
-\begin{array}{ccc}
-1 &amp; 2 &amp; 3\\
-4 &amp; 5 &amp; 6\\
-7 &amp; 8 &amp; 9
+<div id="orthogonal-matrices-and-subspaces" class="section level1">
+<h1><span class="header-section-number">4</span> Orthogonal matrices and subspaces</h1>
+<div id="definition" class="section level2">
+<h2><span class="header-section-number">4.1</span> Definition</h2>
+<p><span class="math inline">\({\boldsymbol Q}\)</span> is an orthogonal matrix, if</p>
+<ol style="list-style-type: decimal">
+<li><span class="math inline">\({\boldsymbol Q}\)</span> is square;</li>
+<li><span class="math inline">\({\boldsymbol Q}^T{\boldsymbol Q}={\boldsymbol I}\Longleftrightarrow {\boldsymbol Q}{\boldsymbol Q}^T={\boldsymbol I}\)</span>.</li>
+</ol>
+</div>
+<div id="hadamard-matrices" class="section level2">
+<h2><span class="header-section-number">4.2</span> Hadamard matrices</h2>
+<p>The Wikipedia link is: <a href="https://en.wikipedia.org/wiki/Hadamard_matrix" class="uri">https://en.wikipedia.org/wiki/Hadamard_matrix</a></p>
+<p>Hadamard conjecture: There is an <span class="math inline">\(n\)</span>-by-<span class="math inline">\(n\)</span> <span class="math inline">\(\pm 1\)</span> matrix with orthogonal columns whenever <span class="math inline">\(4\)</span> divides <span class="math inline">\(n\)</span>.</p>
+</div>
+<div id="orthogonal-basis" class="section level2">
+<h2><span class="header-section-number">4.3</span> Orthogonal basis</h2>
+<ul>
+<li>Every subspace of <span class="math inline">\({\boldsymbol R}^n\)</span> has an orthogonal basis (this can be done by using Gram-Schmidt procedure)</li>
+<li>The row space of <span class="math inline">\({\boldsymbol A}\)</span> is orthogonal to the null space of <span class="math inline">\({\boldsymbol A}\)</span>. The column space of <span class="math inline">\({\boldsymbol A}\)</span> is orthogonal to the null space of <span class="math inline">\({\boldsymbol A}^T\)</span>.</li>
+<li>SVD (Singular Value Decomposition) finds orthogonal bases <span class="math inline">\({\boldsymbol v}_1, \ldots, {\boldsymbol v}_r\)</span> for the row space of <span class="math inline">\({\boldsymbol A}\)</span> and <span class="math inline">\({\boldsymbol u}_1, \ldots, {\boldsymbol u}_r\)</span> for the column space such that <span class="math display">\[
+{\boldsymbol Av}_i=\sigma_i{\boldsymbol u}_i,\ \hbox{for}\ i=1, \ldots, r,
+\]</span> where <span class="math inline">\(r\)</span> is the rank of <span class="math inline">\({\boldsymbol A}\)</span>. That is, for the bases from the SVD, multiplying by <span class="math inline">\({\boldsymbol A}\)</span> takes an orthogonal basis of <span class="math inline">\({\boldsymbol v}\)</span>’s to an orthogonal basis of <span class="math inline">\({\boldsymbol u}\)</span>’s.</li>
+</ul>
+</div>
+<div id="projection-matrix" class="section level2">
+<h2><span class="header-section-number">4.4</span> Projection matrix</h2>
+<p>If <span class="math inline">\({\boldsymbol P}^2={\boldsymbol P}={\boldsymbol P}^T\)</span>, then <span class="math inline">\({\boldsymbol Pb}\)</span> is the <em>orthogonal projection</em> of <span class="math inline">\({\boldsymbol b}\)</span> onto the column space of <span class="math inline">\({\boldsymbol P}\)</span>.</p>
+</div>
+<div id="in-boldsymbol-r2" class="section level2">
+<h2><span class="header-section-number">4.5</span> In <span class="math inline">\({\boldsymbol R}^2\)</span></h2>
+<ul>
+<li>Rotation matrix (rotation through an angle <span class="math inline">\(\theta\)</span>) <span class="math display">\[
+{\boldsymbol Q}_{rot}=\left[
+\begin{array}{rr}
+\cos\theta &amp; -\sin\theta\\
+\sin\theta &amp; \cos\theta
 \end{array}
 \right]
-\]</span> as LU, i.e. a product of lower and upper triangular matrices.</p>
-<strong>Solution:</strong>
-<span class="math display">\[\begin{align}
-&amp;\left[
-\begin{array}{ccc|ccc}
-1 &amp; 2 &amp; 3 &amp;  1 &amp; 0 &amp; 0\\
-4 &amp; 5 &amp; 6 &amp;  0 &amp; 1 &amp; 0\\
-7 &amp; 8 &amp; 9 &amp;  0 &amp; 0 &amp; 1
+\]</span></li>
+<li>Reflection matrix (reflection across <span class="math inline">\(\theta/2\)</span>-line) <span class="math display">\[
+{\boldsymbol Q}_{ref}=\left[
+\begin{array}{rr}
+\cos\theta &amp; \sin\theta\\
+\sin\theta &amp; -\cos\theta
 \end{array}
-\right]\\
-\longrightarrow &amp; \left[
-\begin{array}{crr|rcc}
-1 &amp; 2 &amp; 3 &amp;  1 &amp; 0 &amp; 0\\
-0 &amp; -3 &amp; -6 &amp;  -4 &amp; 1 &amp; 0\\
-0 &amp; -6 &amp; -12 &amp;  -7 &amp; 0 &amp; 1
-\end{array}
-\right]\\
-\longrightarrow &amp; \left[
-\begin{array}{crr|rrc}
-1 &amp; 2 &amp; 3 &amp;  1 &amp; 0 &amp; 0\\
-0 &amp; -3 &amp; -6 &amp;  -4 &amp; 1 &amp; 0\\
-0 &amp; 0 &amp; 0 &amp;  1 &amp; -2 &amp; 1
-\end{array}
-\right]=\left[{\boldsymbol U} | {\boldsymbol L}^{-1}\right].
-\end{align}\]</span>
-Next we find <span class="math inline">\({\boldsymbol L}\)</span>.
-<span class="math display">\[\begin{align}
-&amp;\left[
-\begin{array}{rrc|ccc}
-1 &amp; 0 &amp; 0 &amp;  1 &amp; 0 &amp; 0\\
--4 &amp; 1 &amp; 0 &amp;  0 &amp; 1 &amp; 0\\
-1 &amp; -2 &amp; 1 &amp;  0 &amp; 0 &amp; 1
-\end{array}
-\right]\\
-\longrightarrow &amp; \left[
-\begin{array}{crc|rcc}
-1 &amp; 0 &amp; 0 &amp;  1 &amp; 0 &amp; 0\\
-0 &amp; 1 &amp; 0 &amp;  4 &amp; 1 &amp; 0\\
-0 &amp; -2 &amp; 1 &amp;  -1 &amp; 0 &amp; 1
-\end{array}
-\right]\\
-\longrightarrow &amp; \left[
-\begin{array}{ccc|rrc}
-1 &amp; 0 &amp; 0 &amp;  1 &amp; 0 &amp; 0\\
-0 &amp; 1 &amp; 0 &amp;  4 &amp; 1 &amp; 0\\
-0 &amp; 0 &amp; 1 &amp;  7 &amp; 2 &amp; 1
-\end{array}
-\right]=\left[{\boldsymbol I} | {\boldsymbol L}\right].
-\end{align}\]</span>
-</div>
-<div id="about-permutation-matrices" class="section level2">
-<h2><span class="header-section-number">3.2</span> About permutation matrices</h2>
-<ul>
-<li>There are <span class="math inline">\(n!\)</span> (<span class="math inline">\(n\)</span> factorial) permutation matrices of size <span class="math inline">\(n\)</span>.</li>
-<li>The inverse of every permutation matrix is its transpose (because permutation matrix is orthogonal matrix.)</li>
+\right]
+\]</span></li>
 </ul>
+</div>
+<div id="orthogonal-basis-or-orthogonal-axes-in-boldsymbol-rn" class="section level2">
+<h2><span class="header-section-number">4.6</span> Orthogonal basis (or orthogonal axes) in <span class="math inline">\({\boldsymbol R}^n\)</span></h2>
+<p>Suppose that orthogonal matrix <span class="math inline">\({\boldsymbol Q}\)</span> has columns <span class="math inline">\({\boldsymbol q}_1,\ldots, {\boldsymbol q}_n\)</span>. Those unit vectors are a basis of space <span class="math inline">\({\boldsymbol R}^n\)</span>. Every vector in <span class="math inline">\({\boldsymbol R}^n\)</span> can be expressed as a linear combination of <span class="math inline">\({\boldsymbol q}\)</span>’s: <span class="math display">\[
+v=\sum_{i=1}^n c_i{\boldsymbol q}_i,
+\]</span> where <span class="math display">\[
+c_i = {\boldsymbol q}^T{\boldsymbol v}.
+\]</span> Note that when basis vectors are orthogonal, each coefficient <span class="math inline">\(c_1\)</span> to <span class="math inline">\(c_n\)</span> can be found <em>independently</em>.</p>
+</div>
+<div id="householder-matrices" class="section level2">
+<h2><span class="header-section-number">4.7</span> Householder matrices</h2>
+<p><span class="math display">\[
+{\boldsymbol H}_n={\boldsymbol I}_n - 2{\boldsymbol u}{\boldsymbol u}^T,
+\]</span> where <span class="math inline">\({\boldsymbol u}\in {\boldsymbol R}^n\)</span> and <span class="math inline">\(||{\boldsymbol u}||=1\)</span>. It can be shown that <span class="math display">\[
+{\boldsymbol H}_n {\boldsymbol u} = - {\boldsymbol u},
+\]</span> and <span class="math display">\[
+{\boldsymbol H}_n {\boldsymbol w} = {\boldsymbol w},
+\]</span> if <span class="math inline">\({\boldsymbol w}\)</span> is perpendicular to <span class="math inline">\({\boldsymbol u}\)</span>.</p>
 
 </div>
 </div>
@@ -191,8 +183,8 @@ Next we find <span class="math inline">\({\boldsymbol L}\)</span>.
           </div>
         </div>
       </div>
-<a href="the-four-subspaces.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="orthogonal-matrices-and-subspaces.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="elimination-and-lu.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="eigenvalues-and-eigenvectors.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

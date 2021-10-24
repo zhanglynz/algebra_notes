@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="the-four-subspaces.html">
-<link rel="next" href="orthogonal-matrices-and-subspaces.html">
+<link rel="prev" href="orthogonal-matrices-and-subspaces.html">
+
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -108,91 +108,17 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="elimination-and-lu" class="section level1">
-<h1><span class="header-section-number">3</span> Elimination and LU</h1>
-<div id="elimination" class="section level2">
-<h2><span class="header-section-number">3.1</span> Elimination</h2>
-<p>To solve <span class="math display">\[
-{\boldsymbol Ax}={\boldsymbol b},
-\]</span> we use the (Gaussian) elimination method. Elimination means that a) we “knock out” a variable each time, and finally we have an equation like <span class="math display">\[
-kx_n=b^\ast,
-\]</span> from which we have <span class="math display">\[
-x_n=\frac{b^\ast}{k};
-\]</span> (b) working backwards to have <span class="math inline">\(x_{n-1},\ldots, x_1\)</span>. We do <strong>elementary row operation</strong> in the elimination process.</p>
-<p><strong>Example:</strong> Express <span class="math display">\[
-\left[
-\begin{array}{ccc}
-1 &amp; 2 &amp; 3\\
-4 &amp; 5 &amp; 6\\
-7 &amp; 8 &amp; 9
-\end{array}
-\right]
-\]</span> as LU, i.e. a product of lower and upper triangular matrices.</p>
-<strong>Solution:</strong>
-<span class="math display">\[\begin{align}
-&amp;\left[
-\begin{array}{ccc|ccc}
-1 &amp; 2 &amp; 3 &amp;  1 &amp; 0 &amp; 0\\
-4 &amp; 5 &amp; 6 &amp;  0 &amp; 1 &amp; 0\\
-7 &amp; 8 &amp; 9 &amp;  0 &amp; 0 &amp; 1
-\end{array}
-\right]\\
-\longrightarrow &amp; \left[
-\begin{array}{crr|rcc}
-1 &amp; 2 &amp; 3 &amp;  1 &amp; 0 &amp; 0\\
-0 &amp; -3 &amp; -6 &amp;  -4 &amp; 1 &amp; 0\\
-0 &amp; -6 &amp; -12 &amp;  -7 &amp; 0 &amp; 1
-\end{array}
-\right]\\
-\longrightarrow &amp; \left[
-\begin{array}{crr|rrc}
-1 &amp; 2 &amp; 3 &amp;  1 &amp; 0 &amp; 0\\
-0 &amp; -3 &amp; -6 &amp;  -4 &amp; 1 &amp; 0\\
-0 &amp; 0 &amp; 0 &amp;  1 &amp; -2 &amp; 1
-\end{array}
-\right]=\left[{\boldsymbol U} | {\boldsymbol L}^{-1}\right].
-\end{align}\]</span>
-Next we find <span class="math inline">\({\boldsymbol L}\)</span>.
-<span class="math display">\[\begin{align}
-&amp;\left[
-\begin{array}{rrc|ccc}
-1 &amp; 0 &amp; 0 &amp;  1 &amp; 0 &amp; 0\\
--4 &amp; 1 &amp; 0 &amp;  0 &amp; 1 &amp; 0\\
-1 &amp; -2 &amp; 1 &amp;  0 &amp; 0 &amp; 1
-\end{array}
-\right]\\
-\longrightarrow &amp; \left[
-\begin{array}{crc|rcc}
-1 &amp; 0 &amp; 0 &amp;  1 &amp; 0 &amp; 0\\
-0 &amp; 1 &amp; 0 &amp;  4 &amp; 1 &amp; 0\\
-0 &amp; -2 &amp; 1 &amp;  -1 &amp; 0 &amp; 1
-\end{array}
-\right]\\
-\longrightarrow &amp; \left[
-\begin{array}{ccc|rrc}
-1 &amp; 0 &amp; 0 &amp;  1 &amp; 0 &amp; 0\\
-0 &amp; 1 &amp; 0 &amp;  4 &amp; 1 &amp; 0\\
-0 &amp; 0 &amp; 1 &amp;  7 &amp; 2 &amp; 1
-\end{array}
-\right]=\left[{\boldsymbol I} | {\boldsymbol L}\right].
-\end{align}\]</span>
-</div>
-<div id="about-permutation-matrices" class="section level2">
-<h2><span class="header-section-number">3.2</span> About permutation matrices</h2>
-<ul>
-<li>There are <span class="math inline">\(n!\)</span> (<span class="math inline">\(n\)</span> factorial) permutation matrices of size <span class="math inline">\(n\)</span>.</li>
-<li>The inverse of every permutation matrix is its transpose (because permutation matrix is orthogonal matrix.)</li>
-</ul>
+<div id="eigenvalues-and-eigenvectors" class="section level1">
+<h1><span class="header-section-number">5</span> Eigenvalues and eigenvectors</h1>
 
-</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="the-four-subspaces.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="orthogonal-matrices-and-subspaces.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="orthogonal-matrices-and-subspaces.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
