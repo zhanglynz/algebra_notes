@@ -90,7 +90,11 @@
 <li class="chapter" data-level="4.6" data-path="orthogonal-matrices-and-subspaces.html"><a href="orthogonal-matrices-and-subspaces.html#orthogonal-basis-or-orthogonal-axes-in-boldsymbol-rn"><i class="fa fa-check"></i><b>4.6</b> Orthogonal basis (or orthogonal axes) in <span class="math inline">\({\boldsymbol R}^n\)</span></a></li>
 <li class="chapter" data-level="4.7" data-path="orthogonal-matrices-and-subspaces.html"><a href="orthogonal-matrices-and-subspaces.html#householder-matrices"><i class="fa fa-check"></i><b>4.7</b> Householder matrices</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="eigenvalues-and-eigenvectors.html"><a href="eigenvalues-and-eigenvectors.html"><i class="fa fa-check"></i><b>5</b> Eigenvalues and eigenvectors</a></li>
+<li class="chapter" data-level="5" data-path="eigenvalues-and-eigenvectors.html"><a href="eigenvalues-and-eigenvectors.html"><i class="fa fa-check"></i><b>5</b> Eigenvalues and eigenvectors</a><ul>
+<li class="chapter" data-level="5.1" data-path="eigenvalues-and-eigenvectors.html"><a href="eigenvalues-and-eigenvectors.html#basics"><i class="fa fa-check"></i><b>5.1</b> Basics</a></li>
+<li class="chapter" data-level="5.2" data-path="eigenvalues-and-eigenvectors.html"><a href="eigenvalues-and-eigenvectors.html#similar-matrices"><i class="fa fa-check"></i><b>5.2</b> Similar matrices</a></li>
+<li class="chapter" data-level="5.3" data-path="eigenvalues-and-eigenvectors.html"><a href="eigenvalues-and-eigenvectors.html#homogeneous-linear-difference-equation"><i class="fa fa-check"></i><b>5.3</b> Homogeneous linear difference equation</a></li>
+</ul></li>
 </ul>
 
       </nav>
@@ -110,7 +114,154 @@
             <section class="normal" id="section-">
 <div id="eigenvalues-and-eigenvectors" class="section level1">
 <h1><span class="header-section-number">5</span> Eigenvalues and eigenvectors</h1>
+<div id="basics" class="section level2">
+<h2><span class="header-section-number">5.1</span> Basics</h2>
+<p><span class="math inline">\({\boldsymbol A}\)</span> is an <span class="math inline">\(n\)</span>-by-<span class="math inline">\(n\)</span> matrix. If <span class="math display">\[
+{\boldsymbol A\xi}=\lambda {\boldsymbol \xi},
+\]</span> then <span class="math inline">\(\lambda\)</span> is an eigenvalue and <span class="math inline">\({\boldsymbol \xi}\)</span> is an eigenvector of <span class="math inline">\({\boldsymbol A}\)</span>. Notice that <span class="math display">\[
+{\boldsymbol A}^k{\boldsymbol \xi}=\lambda^k {\boldsymbol \xi},
+\]</span> that is, <span class="math inline">\(\lambda^k\)</span> is eigenvalue and <span class="math inline">\({\boldsymbol \xi}\)</span> is eigenvector of <span class="math inline">\({\boldsymbol A}^k\)</span>.</p>
+<p>Suppose that <span class="math inline">\(\lambda_1,\ldots, \lambda_n\)</span> are eigenvalues of <span class="math inline">\({\boldsymbol A}\)</span>. Three facts:</p>
+<ol style="list-style-type: decimal">
+<li><span class="math display">\[
+\hbox{trace}({\boldsymbol A})=\sum_{i=1}^n \lambda_i.
+\]</span></li>
+<li><span class="math display">\[
+\hbox{det}({\boldsymbol A})=\prod_{i=1}^n \lambda_i.
+\]</span></li>
+<li>The eigenvectors of a real matrix <span class="math inline">\({\boldsymbol A}\)</span> are orthogonal if and only if <span class="math display">\[
+{\boldsymbol A}^T{\boldsymbol A}={\boldsymbol A}{\boldsymbol A}^T.
+\]</span></li>
+</ol>
+<p>Quick proof for Facts 1 and 2. The characteristic polynomial is <span class="math display">\[
+|\lambda {\boldsymbol I} - {\boldsymbol A}|=\prod_{i=1}^n (\lambda - \lambda_i).
+\]</span> In the LHS the coefficient of <span class="math inline">\(\lambda^{n-1}\)</span> is <span class="math inline">\(-\hbox{trace}({\boldsymbol A})\)</span>, and in the RHS the coefficient of <span class="math inline">\(\lambda^{n-1}\)</span> is <span class="math inline">\(-\sum_{i=1}^n \lambda_i\)</span>. Thus we have Fact 1. Let <span class="math inline">\(\lambda\)</span> be 0 in the characteristic polynomial, we have <span class="math display">\[
+(-)^n|{\boldsymbol A}| = (-1)^n \prod_{i=1}^n \lambda_i,
+\]</span> which implies Fact 2.</p>
+</div>
+<div id="similar-matrices" class="section level2">
+<h2><span class="header-section-number">5.2</span> Similar matrices</h2>
+<p>For every invertible matrix <span class="math inline">\({\boldsymbol B}\)</span>, the eigenvalues of <span class="math inline">\({\boldsymbol BAB}^{-1}\)</span> are the same as eigenvalues of <span class="math inline">\({\boldsymbol A}\)</span>. The eigenvector <span class="math inline">\({\boldsymbol x}\)</span> of <span class="math inline">\({\boldsymbol A}\)</span> are multiplied by <span class="math inline">\({\boldsymbol B}\)</span> to give eigenvectors of <span class="math inline">\({\boldsymbol BAB}^{-1}\)</span>.</p>
+<p>The matrices <span class="math inline">\({\boldsymbol BAB}^{-1}\)</span> (for every invertible <span class="math inline">\({\boldsymbol B}\)</span>) are <strong>similar</strong> to <span class="math inline">\({\boldsymbol A}\)</span>.</p>
+<span class="math inline">\({\boldsymbol A}\)</span> is an <span class="math inline">\(n\)</span>-by-<span class="math inline">\(n\)</span> matrix. <span class="math inline">\({\boldsymbol A}\)</span> is similar to a diagonal matrix if and only if it has <span class="math inline">\(n\)</span> independent eigenvectors, <span class="math inline">\({\boldsymbol x}_1, \ldots, {\boldsymbol x}_n\)</span>.
+<span class="math display">\[\begin{align}
+{\boldsymbol A}\left[{\boldsymbol x}_1, \ldots, {\boldsymbol x}_n\right]=&amp;\left[{\boldsymbol A}{\boldsymbol x}_1, \ldots, {\boldsymbol A}{\boldsymbol x}_n\right]\\
+=&amp;\left[\lambda_1{\boldsymbol x}_1, \ldots, \lambda_n{\boldsymbol x}_n\right]\\
+=&amp;\left[{\boldsymbol x}_1, \ldots, {\boldsymbol x}_n\right]\left[
+\begin{array}{ccc}
+\lambda_1 &amp; &amp;\\
+&amp; \ddots &amp;\\
+&amp;&amp; \lambda_n
+\end{array}
+\right],
+\end{align}\]</span>
+<p>which implies <span class="math display">\[
+{\boldsymbol A}=\left[{\boldsymbol x}_1, \ldots, {\boldsymbol x}_n\right]
+\left[
+\begin{array}{ccc}
+\lambda_1 &amp; &amp;\\
+&amp; \ddots &amp;\\
+&amp;&amp; \lambda_n
+\end{array}
+\right]
+\left[{\boldsymbol x}_1, \ldots, {\boldsymbol x}_n\right]^{-1}
+\]</span> and <span class="math display">\[
+{\boldsymbol A}^k=\left[{\boldsymbol x}_1, \ldots, {\boldsymbol x}_n\right]
+\left[
+\begin{array}{ccc}
+\lambda_1^k &amp; &amp;\\
+&amp; \ddots &amp;\\
+&amp;&amp; \lambda_n^k
+\end{array}
+\right]
+\left[{\boldsymbol x}_1, \ldots, {\boldsymbol x}_n\right]^{-1}.
+\]</span></p>
+<p>Geometric multiplicity (= GM) counts the independent eigenvectors for <span class="math inline">\(\lambda\)</span>; we look at the dimension of null space of <span class="math inline">\(\lambda{\boldsymbol I}-{\boldsymbol A}\)</span>. Algebraic multiplicity (= AM) counts the repetitions of <span class="math inline">\(\lambda\)</span> among eigenvalues; we look at the roots of <span class="math inline">\({\hbox{det}(\lambda{\boldsymbol I}-{\boldsymbol A})}=0.\)</span> The shortage of eigenvectors when <span class="math inline">\(\hbox{GM}&lt;\hbox{AM}\)</span> means that <span class="math inline">\({\boldsymbol A}\)</span> is not diagonalizable (or in other words, it’s not similar to a diagonal matrix).</p>
+</div>
+<div id="homogeneous-linear-difference-equation" class="section level2">
+<h2><span class="header-section-number">5.3</span> Homogeneous linear difference equation</h2>
+<p>Let’s have an example. For integer sequence <span class="math inline">\(\{a_n\}\)</span>, <span class="math inline">\(a_0=a_1=a_2=1\)</span> and if <span class="math inline">\(n\ge 3\)</span> <span class="math display">\[
+a_n = pa_{n-1} + qa_{n-2}+ra_{n-3}.
+\]</span> Find an expression of <span class="math inline">\(a_n\)</span>.</p>
+<strong>Solution:</strong>
+<span class="math display">\[\begin{align}
+\left[
+\begin{array}{l}
+a_{n+2}\\
+a_{n+1}\\
+a_n
+\end{array}
+\right]=&amp;
+\left[
+\begin{array}{ccc}
+p &amp; q &amp; r\\
+1 &amp; 0 &amp; 0\\
+0 &amp; 1 &amp; 0
+\end{array}
+\right]\left[
+\begin{array}{l}
+a_{n+1}\\
+a_{n}\\
+a_{n-1}
+\end{array}
+\right]\\
+=&amp;\left[
+\begin{array}{ccc}
+p &amp; q &amp; r\\
+1 &amp; 0 &amp; 0\\
+0 &amp; 1 &amp; 0
+\end{array}
+\right]^2\left[
+\begin{array}{l}
+a_{n}\\
+a_{n-1}\\
+a_{n-2}
+\end{array}
+\right]\\
+\vdots&amp;\\
+=&amp;\left[
+\begin{array}{ccc}
+p &amp; q &amp; r\\
+1 &amp; 0 &amp; 0\\
+0 &amp; 1 &amp; 0
+\end{array}
+\right]^n\left[
+\begin{array}{l}
+a_{2}\\
+a_{1}\\
+a_{0}
+\end{array}
+\right]:={\boldsymbol A}^n\left[
+\begin{array}{l}
+a_{2}\\
+a_{1}\\
+a_{0}
+\end{array}
+\right].
+\end{align}\]</span>
+Note that if <span class="math inline">\({\boldsymbol A}\)</span> is diagonalizable, then it’s easy to compute <span class="math inline">\({\boldsymbol A}^n\)</span>, and we can find a closed-form expression of <span class="math inline">\(a_n\)</span>. Also notice that
+<span class="math display">\[\begin{align}
+|\lambda {\boldsymbol I}-{\boldsymbol A}|=&amp;
+\begin{array}{|rrr|}
+\lambda-p &amp; -q &amp; -r\\
+-1 &amp; \lambda &amp; 0\\
+0 &amp; -1 &amp; \lambda
+\end{array}\\
+=&amp; -r
+\begin{array}{|rr|}
+-1 &amp; \lambda\\
+0 &amp; -1
+\end{array}+\lambda
+\begin{array}{|rr|}
+\lambda-p &amp; -q\\
+-1 &amp; \lambda
+\end{array}\\
+=&amp;-r + \lambda\left[(\lambda-p)\lambda - q\right]\\
+=&amp;-r+\lambda\left[\lambda^2-p\lambda-q\right]\\
+=&amp;\lambda^3-p\lambda^2-q\lambda-r.
+\end{align}\]</span>
 
+</div>
 </div>
             </section>
 
