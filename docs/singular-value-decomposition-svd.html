@@ -25,7 +25,7 @@
 <meta name="author" content="Lingyun Zhang">
 
 
-<meta name="date" content="2021-11-07">
+<meta name="date" content="2021-11-13">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -157,12 +157,90 @@
 \]</span> The singular value decomposition of <span class="math inline">\({\boldsymbol A}\)</span> is <span class="math display">\[
 {\boldsymbol A}={\boldsymbol U\Sigma V}^T=\sum_{i=1}^r \sigma_i {\boldsymbol u}_i{\boldsymbol v}_i^T.
 \]</span></p>
+<p>The <strong>reduced form of the SVD</strong>: The heart of the SVD is in the first <span class="math inline">\(r\)</span> <span class="math inline">\({\boldsymbol v}\)</span>’s and <span class="math inline">\({\boldsymbol u}\)</span>’s and <span class="math inline">\(\sigma\)</span>’s. We can reduce <span class="math display">\[
+{\boldsymbol AV}={\boldsymbol U\Sigma V}
+\]</span> to <span class="math display">\[
+{\boldsymbol AV}_r={\boldsymbol U}_r{\boldsymbol \Sigma}_r,
+\]</span> where <span class="math inline">\({\boldsymbol \Sigma}_r\)</span> is now square; this is the reduced SVD. We still have <span class="math display">\[
+{\boldsymbol A}={\boldsymbol U}_r{\boldsymbol \Sigma}_r{\boldsymbol V}^T_r;
+\]</span> this is because <span class="math display">\[
+LHS = \sum_{i=1}^r \sigma_i {\boldsymbol u}_i{\boldsymbol v}_i^T
+\]</span> and <span class="math display">\[
+RHS = \sum_{i=1}^r \sigma_i {\boldsymbol u}_i{\boldsymbol v}_i^T.
+\]</span></p>
+<p><strong>Why is the SVD so important?</strong> Answer: Like the other factorizations, SVD separates the matrix into rank one pieces. A special property of the SVD is that those pieces come <strong>in order of importance</strong>. The first piece <span class="math inline">\(\sigma_1{\boldsymbol u}_1{\boldsymbol v}_1^T\)</span> is the closest rank one matrix to <span class="math inline">\({\boldsymbol A}\)</span>. More than that is true: <span class="math display">\[
+{\boldsymbol A}_k=\sum_{i=1}^k \sigma_i {\boldsymbol u}_k{\boldsymbol v}_k^T
+\]</span> is the best rank <span class="math inline">\(k\)</span> approximation to <span class="math inline">\({\boldsymbol A}\)</span>.</p>
 </div>
 <div id="proof-of-svd-a-sketch" class="section level2">
 <h2><span class="header-section-number">7.2</span> Proof of SVD (a sketch)</h2>
+<ol style="list-style-type: decimal">
+<li><p>We need the two facts:</p>
+<ul>
+<li><span class="math inline">\(\hbox{rank}({\boldsymbol A})=\hbox{rank}({\boldsymbol A}^T)=\hbox{rank}({\boldsymbol AA}^T)=\hbox{rank}({\boldsymbol A}^T{\boldsymbol A})\)</span></li>
+<li><span class="math inline">\({\boldsymbol BA}\)</span> has the same non-zero eigenvalues as <span class="math inline">\({\boldsymbol AB}\)</span>.</li>
+</ul></li>
+<li><p>If <span class="math display">\[
+{\boldsymbol A}={\boldsymbol U\Sigma V}^T,
+\]</span> then <span class="math display">\[
+{\boldsymbol A}^T{\boldsymbol A}={\boldsymbol V \Sigma}^T{\boldsymbol U}^T{\boldsymbol U\Sigma V}^T={\boldsymbol V\Sigma}^T{\boldsymbol \Sigma V}^T,
+\]</span> and <span class="math display">\[
+{\boldsymbol A}^T{\boldsymbol A}={\boldsymbol U\Sigma V}^T{\boldsymbol V\Sigma}^T{\boldsymbol U}^T={\boldsymbol U\Sigma\Sigma}^T{\boldsymbol U}^T.
+\]</span></p></li>
+<li><p>We choose that</p>
+<ul>
+<li><span class="math inline">\({\boldsymbol V}\)</span> contains orthonormal eigenvectors of <span class="math inline">\({\boldsymbol A}^T{\boldsymbol A}\)</span></li>
+<li><span class="math inline">\({\boldsymbol U}\)</span> contains orthonormal eigenvectors of <span class="math inline">\({\boldsymbol AA}^T\)</span></li>
+<li><span class="math inline">\(\sigma_1^2\)</span> to <span class="math inline">\(\sigma_r^2\)</span> are the non-zero eigenvalues of both <span class="math inline">\({\boldsymbol A}^T{\boldsymbol A}\)</span> and <span class="math inline">\({\boldsymbol AA}^T\)</span>.</li>
+</ul></li>
+<li><p>Details about choosing <span class="math inline">\({\boldsymbol V}\)</span>, <span class="math inline">\({\boldsymbol U}\)</span></p>
+<ul>
+<li>Choosing orthonormal eigenvectors of <span class="math inline">\({\boldsymbol v}_1, \ldots, {\boldsymbol v}_r\)</span> of <span class="math inline">\({\boldsymbol A}^T{\boldsymbol A}\)</span>, making sure that eigenvalues <span class="math inline">\(\lambda_1,\ldots, \lambda_r\)</span> are all positive.</li>
+<li><span class="math inline">\(\sigma_k=\sqrt{\lambda_k}\)</span>.</li>
+<li><span class="math inline">\({\boldsymbol u}_k={\boldsymbol Av}_k/\sigma_k,\)</span> <span class="math inline">\(k=1,\ldots, r\)</span>.</li>
+<li>Choosing the last <span class="math inline">\(n-r\)</span> vectors <span class="math inline">\({\boldsymbol v}_{r+1}\)</span> to <span class="math inline">\({\boldsymbol v}_n\)</span> and the last <span class="math inline">\(m-r\)</span> vecotrs <span class="math inline">\({\boldsymbol u}_{r+1}\)</span> to <span class="math inline">\({\boldsymbol u}_m\)</span>; those <span class="math inline">\({\boldsymbol v}\)</span>’s and <span class="math inline">\({\boldsymbol u}\)</span>’s are in the null spaces of <span class="math inline">\({\boldsymbol A}\)</span> and <span class="math inline">\({\boldsymbol A}^T\)</span>, respectively.</li>
+</ul></li>
+</ol>
+Now, let’s do some checking. Firstly, we check <span class="math inline">\({\boldsymbol u}\)</span>’s are eigenvalues of <span class="math inline">\({\boldsymbol AA}^T\)</span>.
+<span class="math display">\[\begin{align}
+{\boldsymbol AA}^T{\boldsymbol u}_k=&amp;{\boldsymbol AA}^T\left(\frac{{\boldsymbol A v}_k}{\sigma_k}\right)\\
+=&amp;{\boldsymbol A}\left(\frac{{\boldsymbol A}^T{\boldsymbol A v}_k}{\sigma_k}\right)\\
+=&amp;{\boldsymbol A}\left(\frac{\sigma^2_k{\boldsymbol v}_k}{\sigma_k}\right)\\
+=&amp;\sigma^2_k{\boldsymbol u}_k.
+\end{align}\]</span>
+Next, we check that <span class="math inline">\({\boldsymbol u}\)</span>’s are orthonormal:
+<span class="math display">\[\begin{align}
+{\boldsymbol u}_j^T{\boldsymbol u}=&amp;\left(
+\frac{{\boldsymbol Av}_j}{\sigma_j}
+\right)^T \left(
+\frac{{\boldsymbol Av}_k}{\sigma_k}
+\right)\\
+=&amp;\frac{{\boldsymbol v}_j^T{\boldsymbol A}^T{\boldsymbol Av}_k}{\sigma_j\sigma_k}\\
+=&amp;\frac{\sigma_k}{\sigma_j}{\boldsymbol v}_j^T{\boldsymbol v}_k\\
+=&amp;\left\{
+\begin{array}{cl}
+1, &amp; \hbox{if}\ j=k;\\
+0, &amp; \hbox{if}\ j\neq k.
+\end{array}
+\right.
+\end{align}\]</span>
 </div>
 <div id="the-first-singular-vector" class="section level2">
 <h2><span class="header-section-number">7.3</span> The first singular vector</h2>
+<p>Maximize the ratio <span class="math display">\[
+\frac{||{\boldsymbol Ax}||}{||{\boldsymbol x}||}.
+\]</span> The maximum is <span class="math inline">\(\sigma_1\)</span> (the largest singular value) at the vector <span class="math inline">\({\boldsymbol x}={\boldsymbol v}_1\)</span>.</p>
+<p><strong>Proof:</strong> It’s equivalent to show that <span class="math display">\[
+\begin{array}{cl}
+&amp;\frac{||{\boldsymbol Ax}||^2}{||{\boldsymbol x}||^2}\le \sigma_1^2\\
+\Leftrightarrow &amp; {\boldsymbol x}^T{\boldsymbol A}^T{\boldsymbol Ax}\le \sigma_1^2{\boldsymbol x}^T{\boldsymbol x}\\
+\Leftrightarrow &amp; {\boldsymbol x}^T\left(
+\sigma_1^2{\boldsymbol I}-{\boldsymbol A}^T{\boldsymbol A}\right){\boldsymbol x}\ge 0.
+\end{array}
+\]</span> Since the eigenvalues of <span class="math inline">\(\sigma_1^2{\boldsymbol I}-{\boldsymbol A}^T{\boldsymbol A}\)</span> are all non-negative, <span class="math display">\[
+{\boldsymbol x}^T\left(
+\sigma_1^2{\boldsymbol I}-{\boldsymbol A}^T{\boldsymbol A}\right){\boldsymbol x}\ge 0,
+\]</span> and the equality holds when <span class="math inline">\({\boldsymbol x}={\boldsymbol v}_1\)</span>.</p>
 
 </div>
 </div>
