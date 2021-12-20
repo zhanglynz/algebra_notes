@@ -2,7 +2,7 @@
 knit: "bookdown::render_book"
 title: "Linear Algebra Notes"
 author: "Lingyun Zhang"
-date: "2021-11-13"
+date: "2021-12-20"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: book

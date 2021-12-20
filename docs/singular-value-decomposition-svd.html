@@ -1,15 +1,14 @@
 <!DOCTYPE html>
-<html >
-
+<html lang="" xml:lang="">
 <head>
 
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Linear Algebra Notes</title>
-  <meta name="description" content="Linear Algebra Notes">
-  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>7 Singular value decomposition (SVD) | Linear Algebra Notes</title>
+  <meta name="description" content="7 Singular value decomposition (SVD) | Linear Algebra Notes" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Linear Algebra Notes" />
+  <meta property="og:title" content="7 Singular value decomposition (SVD) | Linear Algebra Notes" />
   <meta property="og:type" content="book" />
   
   
@@ -17,35 +16,42 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Linear Algebra Notes" />
+  <meta name="twitter:title" content="7 Singular value decomposition (SVD) | Linear Algebra Notes" />
   
   
   
 
-<meta name="author" content="Lingyun Zhang">
+<meta name="author" content="Lingyun Zhang" />
 
 
-<meta name="date" content="2021-11-13">
+<meta name="date" content="2021-12-20" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="symmetric-positive-definite-matrices.html">
-
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link rel="prev" href="symmetric-positive-definite-matrices.html"/>
+<link rel="next" href="principal-component-analysis-pca.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
 
 
 
 
 
 
+
+
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 
@@ -105,6 +111,7 @@
 <li class="chapter" data-level="7.2" data-path="singular-value-decomposition-svd.html"><a href="singular-value-decomposition-svd.html#proof-of-svd-a-sketch"><i class="fa fa-check"></i><b>7.2</b> Proof of SVD (a sketch)</a></li>
 <li class="chapter" data-level="7.3" data-path="singular-value-decomposition-svd.html"><a href="singular-value-decomposition-svd.html#the-first-singular-vector"><i class="fa fa-check"></i><b>7.3</b> The first singular vector</a></li>
 </ul></li>
+<li class="chapter" data-level="8" data-path="principal-component-analysis-pca.html"><a href="principal-component-analysis-pca.html"><i class="fa fa-check"></i><b>8</b> Principal Component Analysis (PCA)</a></li>
 </ul>
 
       </nav>
@@ -127,7 +134,7 @@
 <div id="key-ideas" class="section level2">
 <h2><span class="header-section-number">7.1</span> Key ideas</h2>
 <p>If matrix <span class="math inline">\({\boldsymbol A}_{m\times n}\)</span> is not square, then <span class="math inline">\({\boldsymbol Ax}=\lambda{\boldsymbol x}\)</span> is impossible and eigenvectors fail (the left side in <span class="math inline">\({\boldsymbol R}^m\)</span>, the right side in <span class="math inline">\({\boldsymbol R}^n\)</span>.)</p>
-<p>The key idea is that we need two sets of singular vectors, the <span class="math inline">\({\boldsymbol u}\)</span>’s and <span class="math inline">\({\boldsymbol v}\)</span>’s. For a real <span class="math inline">\(m\)</span>-by-<span class="math inline">\(n\)</span> matrix, the <span class="math inline">\(n\)</span> right singular vectors <span class="math inline">\({\boldsymbol v}_1,\ldots, {\boldsymbol v}_n\)</span> are orthogonal in <span class="math inline">\({\boldsymbol R}^n\)</span>; the <span class="math inline">\(m\)</span> left singular vectors <span class="math inline">\({\boldsymbol u}_1,\ldots, {\boldsymbol u}_m\)</span> are orthogonal in <span class="math inline">\({\boldsymbol R}^m\)</span>. The right and left singular vectors are connected in the following way: <span class="math display">\[
+<p>The key idea is that we need two sets of singular vectors, the <span class="math inline">\({\boldsymbol u}\)</span>'s and <span class="math inline">\({\boldsymbol v}\)</span>'s. For a real <span class="math inline">\(m\)</span>-by-<span class="math inline">\(n\)</span> matrix, the <span class="math inline">\(n\)</span> right singular vectors <span class="math inline">\({\boldsymbol v}_1,\ldots, {\boldsymbol v}_n\)</span> are orthogonal in <span class="math inline">\({\boldsymbol R}^n\)</span>; the <span class="math inline">\(m\)</span> left singular vectors <span class="math inline">\({\boldsymbol u}_1,\ldots, {\boldsymbol u}_m\)</span> are orthogonal in <span class="math inline">\({\boldsymbol R}^m\)</span>. The right and left singular vectors are connected in the following way: <span class="math display">\[
 \left\{
 \begin{array}{l}
 {\boldsymbol Av}_1=\sigma_1{\boldsymbol u}_1, \ldots, {\boldsymbol Av}_r=\sigma_r{\boldsymbol u}_r,\\
@@ -136,7 +143,7 @@
 \right.
 \]</span> where <span class="math inline">\(r\)</span> is the rank of <span class="math inline">\({\boldsymbol A}\)</span>, <span class="math display">\[
 \sigma_1\ge \sigma_2\ge \cdots \ge \sigma_r&gt;0.
-\]</span> The last <span class="math inline">\(n-r\)</span> <span class="math inline">\({\boldsymbol v}\)</span>’s are in the null space of <span class="math inline">\({\boldsymbol A}\)</span>, and the last <span class="math inline">\(m-r\)</span> <span class="math inline">\({\boldsymbol u}\)</span>’s are in the null space of <span class="math inline">\({\boldsymbol A}^T\)</span>. The matrix format is: <span class="math display">\[
+\]</span> The last <span class="math inline">\(n-r\)</span> <span class="math inline">\({\boldsymbol v}\)</span>'s are in the null space of <span class="math inline">\({\boldsymbol A}\)</span>, and the last <span class="math inline">\(m-r\)</span> <span class="math inline">\({\boldsymbol u}\)</span>'s are in the null space of <span class="math inline">\({\boldsymbol A}^T\)</span>. The matrix format is: <span class="math display">\[
 {\boldsymbol AV}={\boldsymbol U\Sigma},
 \]</span> i.e. <span class="math display">\[
 {\boldsymbol A}\left[
@@ -157,7 +164,7 @@
 \]</span> The singular value decomposition of <span class="math inline">\({\boldsymbol A}\)</span> is <span class="math display">\[
 {\boldsymbol A}={\boldsymbol U\Sigma V}^T=\sum_{i=1}^r \sigma_i {\boldsymbol u}_i{\boldsymbol v}_i^T.
 \]</span></p>
-<p>The <strong>reduced form of the SVD</strong>: The heart of the SVD is in the first <span class="math inline">\(r\)</span> <span class="math inline">\({\boldsymbol v}\)</span>’s and <span class="math inline">\({\boldsymbol u}\)</span>’s and <span class="math inline">\(\sigma\)</span>’s. We can reduce <span class="math display">\[
+<p>The <strong>reduced form of the SVD</strong>: The heart of the SVD is in the first <span class="math inline">\(r\)</span> <span class="math inline">\({\boldsymbol v}\)</span>'s and <span class="math inline">\({\boldsymbol u}\)</span>'s and <span class="math inline">\(\sigma\)</span>'s. We can reduce <span class="math display">\[
 {\boldsymbol AV}={\boldsymbol U\Sigma V}
 \]</span> to <span class="math display">\[
 {\boldsymbol AV}_r={\boldsymbol U}_r{\boldsymbol \Sigma}_r,
@@ -198,17 +205,17 @@ RHS = \sum_{i=1}^r \sigma_i {\boldsymbol u}_i{\boldsymbol v}_i^T.
 <li>Choosing orthonormal eigenvectors of <span class="math inline">\({\boldsymbol v}_1, \ldots, {\boldsymbol v}_r\)</span> of <span class="math inline">\({\boldsymbol A}^T{\boldsymbol A}\)</span>, making sure that eigenvalues <span class="math inline">\(\lambda_1,\ldots, \lambda_r\)</span> are all positive.</li>
 <li><span class="math inline">\(\sigma_k=\sqrt{\lambda_k}\)</span>.</li>
 <li><span class="math inline">\({\boldsymbol u}_k={\boldsymbol Av}_k/\sigma_k,\)</span> <span class="math inline">\(k=1,\ldots, r\)</span>.</li>
-<li>Choosing the last <span class="math inline">\(n-r\)</span> vectors <span class="math inline">\({\boldsymbol v}_{r+1}\)</span> to <span class="math inline">\({\boldsymbol v}_n\)</span> and the last <span class="math inline">\(m-r\)</span> vecotrs <span class="math inline">\({\boldsymbol u}_{r+1}\)</span> to <span class="math inline">\({\boldsymbol u}_m\)</span>; those <span class="math inline">\({\boldsymbol v}\)</span>’s and <span class="math inline">\({\boldsymbol u}\)</span>’s are in the null spaces of <span class="math inline">\({\boldsymbol A}\)</span> and <span class="math inline">\({\boldsymbol A}^T\)</span>, respectively.</li>
+<li>Choosing the last <span class="math inline">\(n-r\)</span> vectors <span class="math inline">\({\boldsymbol v}_{r+1}\)</span> to <span class="math inline">\({\boldsymbol v}_n\)</span> and the last <span class="math inline">\(m-r\)</span> vecotrs <span class="math inline">\({\boldsymbol u}_{r+1}\)</span> to <span class="math inline">\({\boldsymbol u}_m\)</span>; those <span class="math inline">\({\boldsymbol v}\)</span>'s and <span class="math inline">\({\boldsymbol u}\)</span>'s are in the null spaces of <span class="math inline">\({\boldsymbol A}\)</span> and <span class="math inline">\({\boldsymbol A}^T\)</span>, respectively.</li>
 </ul></li>
 </ol>
-Now, let’s do some checking. Firstly, we check <span class="math inline">\({\boldsymbol u}\)</span>’s are eigenvalues of <span class="math inline">\({\boldsymbol AA}^T\)</span>.
+Now, let's do some checking. Firstly, we check <span class="math inline">\({\boldsymbol u}\)</span>'s are eigenvalues of <span class="math inline">\({\boldsymbol AA}^T\)</span>.
 <span class="math display">\[\begin{align}
 {\boldsymbol AA}^T{\boldsymbol u}_k=&amp;{\boldsymbol AA}^T\left(\frac{{\boldsymbol A v}_k}{\sigma_k}\right)\\
 =&amp;{\boldsymbol A}\left(\frac{{\boldsymbol A}^T{\boldsymbol A v}_k}{\sigma_k}\right)\\
 =&amp;{\boldsymbol A}\left(\frac{\sigma^2_k{\boldsymbol v}_k}{\sigma_k}\right)\\
 =&amp;\sigma^2_k{\boldsymbol u}_k.
 \end{align}\]</span>
-Next, we check that <span class="math inline">\({\boldsymbol u}\)</span>’s are orthonormal:
+Next, we check that <span class="math inline">\({\boldsymbol u}\)</span>'s are orthonormal:
 <span class="math display">\[\begin{align}
 {\boldsymbol u}_j^T{\boldsymbol u}=&amp;\left(
 \frac{{\boldsymbol Av}_j}{\sigma_j}
@@ -230,7 +237,7 @@ Next, we check that <span class="math inline">\({\boldsymbol u}\)</span>’s are
 <p>Maximize the ratio <span class="math display">\[
 \frac{||{\boldsymbol Ax}||}{||{\boldsymbol x}||}.
 \]</span> The maximum is <span class="math inline">\(\sigma_1\)</span> (the largest singular value) at the vector <span class="math inline">\({\boldsymbol x}={\boldsymbol v}_1\)</span>.</p>
-<p><strong>Proof:</strong> It’s equivalent to show that <span class="math display">\[
+<p><strong>Proof:</strong> It's equivalent to show that <span class="math display">\[
 \begin{array}{cl}
 &amp;\frac{||{\boldsymbol Ax}||^2}{||{\boldsymbol x}||^2}\le \sigma_1^2\\
 \Leftrightarrow &amp; {\boldsymbol x}^T{\boldsymbol A}^T{\boldsymbol Ax}\le \sigma_1^2{\boldsymbol x}^T{\boldsymbol x}\\
@@ -249,17 +256,18 @@ Next, we check that <span class="math inline">\({\boldsymbol u}\)</span>’s are
           </div>
         </div>
       </div>
-<a href="symmetric-positive-definite-matrices.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="symmetric-positive-definite-matrices.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="principal-component-analysis-pca.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
 <script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
 <script>
 gitbook.require(["gitbook"], function(gitbook) {
 gitbook.start({
@@ -267,12 +275,12 @@ gitbook.start({
 "github": false,
 "facebook": true,
 "twitter": true,
-"google": false,
 "linkedin": false,
 "weibo": false,
-"instapper": false,
+"instapaper": false,
 "vk": false,
-"all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
 "theme": "white",
@@ -283,7 +291,19 @@ gitbook.start({
 "link": null,
 "text": null
 },
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
 "download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "subsection"
 }
@@ -297,9 +317,10 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "";
-    if (src === "" || src === "true") src = "https://cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:" && /^https?:/.test(src))
-      src = src.replace(/^https?:/, '');
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
     script.src = src;
     document.getElementsByTagName("head")[0].appendChild(script);
   })();

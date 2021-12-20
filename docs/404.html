@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>1 Looking into matrices | Linear Algebra Notes</title>
-  <meta name="description" content="1 Looking into matrices | Linear Algebra Notes" />
+  <title>Page not found | Linear Algebra Notes</title>
+  <meta name="description" content="Page not found | Linear Algebra Notes" />
   <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="1 Looking into matrices | Linear Algebra Notes" />
+  <meta property="og:title" content="Page not found | Linear Algebra Notes" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="1 Looking into matrices | Linear Algebra Notes" />
+  <meta name="twitter:title" content="Page not found | Linear Algebra Notes" />
   
   
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="index.html"/>
-<link rel="next" href="the-four-subspaces.html"/>
+
+
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -129,239 +129,19 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="looking-into-matrices" class="section level1">
-<h1><span class="header-section-number">1</span> Looking into matrices</h1>
-<p>If not specifically stated, all the numbers that we use are real.</p>
-<div id="column-and-row-vectors" class="section level2">
-<h2><span class="header-section-number">1.1</span> Column and row vectors</h2>
-<p>We use bold lowercase letters to denote vectors. All the vectors are <em>column vectors</em>; if we need <em>row vector</em>, then we use <em>transpose</em> <span class="math inline">\(T\)</span>.</p>
-<p><strong>Examples:</strong></p>
-<ul>
-<li><span class="math inline">\({\boldsymbol a}^T = (1,\ 2,\ 3)\)</span></li>
-<li><span class="math inline">\({\boldsymbol b}^T= (1,\ 0,\ 0)\)</span></li>
-<li><span class="math inline">\({\boldsymbol x}^T= (1/2,\ 1/3,\ 1/4)\)</span></li>
-</ul>
-</div>
-<div id="definition-of-a-matrix" class="section level2">
-<h2><span class="header-section-number">1.2</span> Definition of a matrix</h2>
-<p>Let <span class="math inline">\(m\)</span> and <span class="math inline">\(n\)</span> be positive integers. <span class="math inline">\({\boldsymbol A}_{m\times n}\)</span> is <em>matrix</em>---it's an <span class="math inline">\(m\)</span>-by-<span class="math inline">\(n\)</span> table, containing <span class="math inline">\(m\times n\)</span> numbers.</p>
-<p><strong>Element picture:</strong> <span class="math display">\[
-{\boldsymbol A}_{m\times n} = \left[a_{ij}\right].
-\]</span></p>
-<p><strong>Column picture:</strong> <span class="math display">\[
-{\boldsymbol A}_{m\times n} = 
-\left[
-{\boldsymbol c}_1,\ \ldots,\ {\boldsymbol c}_n
-\right],
-\]</span> where <span class="math inline">\({\boldsymbol c}_i\in {\mathbf R}^m\)</span> for <span class="math inline">\(i=1,\ldots,\ n.\)</span></p>
-<p><strong>Row picture:</strong> <span class="math display">\[
-{\boldsymbol A}_{m\times n} = 
-\left[
-\begin{array}{c}
-{\boldsymbol r}_1^T\\
-\vdots\\
-{\boldsymbol r}_m^T
-\end{array}
-\right],
-\]</span> where <span class="math inline">\({\boldsymbol r}_i\in {\mathbf R}^n\)</span> for <span class="math inline">\(i=1, \ldots, m\)</span>.</p>
-</div>
-<div id="transpose" class="section level2">
-<h2><span class="header-section-number">1.3</span> Transpose</h2>
-<p><span class="math display">\[
-{\boldsymbol A}^T=
-\left[
-\begin{array}{c}
-{\boldsymbol c}_1^T\\
-\vdots\\
-{\boldsymbol c}_n^T
-\end{array}
-\right]=
-\left[
-{\boldsymbol r}_1,\ \ldots,\ {\boldsymbol r}_m
-\right],
-\]</span> which is an <span class="math inline">\(n\)</span>-by-<span class="math inline">\(m\)</span> matrix.</p>
-</div>
-<div id="a-matrix-times-a-vector" class="section level2">
-<h2><span class="header-section-number">1.4</span> A matrix times a vector</h2>
-<p>By row: it's <em>inner product</em> of rows; by column: it's <strong>linear combination of columns</strong>. For example <span class="math display">\[
-\left[
-\begin{array}{ccc}
-1 &amp; 2\\
-3 &amp; 4\\
-5 &amp; 6
-\end{array}
-\right]
-\left[
-\begin{array}{c}
-x_1\\
-x_2
-\end{array}
-\right]=\left[
-\begin{array}{r}
-x_1+2x_2\\
-3x_1+4x_2\\
-5x_1+6x_2
-\end{array}
-\right],
-\]</span> or <span class="math display">\[
-\left[
-\begin{array}{ccc}
-1 &amp; 2\\
-3 &amp; 4\\
-5 &amp; 6
-\end{array}
-\right]
-\left[
-\begin{array}{c}
-x_1\\
-x_2
-\end{array}
-\right]=x_1\left[
-\begin{array}{c}
-1\\
-3\\
-5
-\end{array}
-\right]+
-x_2\left[
-\begin{array}{c}
-2\\
-4\\
-6
-\end{array}
-\right].
-\]</span></p>
-</div>
-<div id="column-space-of-boldsymbol-a_mtimes-n" class="section level2">
-<h2><span class="header-section-number">1.5</span> Column space of <span class="math inline">\({\boldsymbol A}_{m\times n}\)</span></h2>
-<p>The column space is <span class="math display">\[
-Col({\boldsymbol A}_{m\times n})= \left\{
-{\boldsymbol y}: {\boldsymbol y} = {\boldsymbol A}{\boldsymbol x},\ \hbox{where}\ {\boldsymbol x}\in {\mathbf R}^n  
-\right\}.
-\]</span></p>
-<p>A bunch of vectors are <em>linearly independent</em>, if there is only <strong>one way</strong> to represent the zero vector as a linear combination of these vectors; or, equivalently, if any one of them cannot be represented as a linear combination of the others.</p>
-<p>The <strong>basis</strong> of <span class="math inline">\(Col({\boldsymbol A})\)</span> consists of a subset of the columns of <span class="math inline">\({\boldsymbol A}\)</span>, such that a) these columns are linearly independent, b) any a column of <span class="math inline">\({\boldsymbol A}\)</span> is a linear combination of these columns.</p>
-</div>
-<div id="rank-of-a-matrix" class="section level2">
-<h2><span class="header-section-number">1.6</span> Rank of a matrix</h2>
-<p>The rank of a matrix is the dimension of its column space.</p>
-<p>To find rank of a matrix, we need to find a basis of its column space, for this, an algorithm is: if column 1 is not all zeros, keep it; if column 2 is not a multiple of column 1, keep it; if column 3 is not a linear combination of columns 1 and 2, keep it. <em>Continue</em> this way until find all the columns that forms a basis.</p>
-<p><strong>It can be shown that</strong> <span class="math display">\[
-\hbox{rank}({\boldsymbol A})=
-\hbox{rank}({\boldsymbol A}^T)=
-\hbox{rank}({\boldsymbol A}^T{\boldsymbol A})=\hbox{rank}({\boldsymbol A}{\boldsymbol A}^T).
-\]</span></p>
-</div>
-<div id="representing-a-matrix-as-cr-and-cmr" class="section level2">
-<h2><span class="header-section-number">1.7</span> Representing a matrix as CR and CMR</h2>
-<p>The letters in CR and CMR stand for <strong>C</strong>olumn, <strong>R</strong>ow and <strong>M</strong>ixing.</p>
-<p>In the CR and CMR expressions, columns of matrix <span class="math inline">\({\boldsymbol C}\)</span> is a basis of <span class="math inline">\(Col({\boldsymbol A})\)</span> and they are directly from <span class="math inline">\({\boldsymbol A}\)</span>. In the CMR expression, transpose of rows of matrix <span class="math inline">\({\boldsymbol R}\)</span> is a basis of row space of <span class="math inline">\({\boldsymbol A}\)</span> and they are directly from the rows of <span class="math inline">\({\boldsymbol A}\)</span>.</p>
-<p>The CR and CMR expressions both show that column and row ranks of a matrix are the same.</p>
-<p><strong>Example:</strong> CR expression <span class="math display">\[
-\left[
-\begin{array}{ccc}
-1 &amp; 2 &amp; 3\\
-4 &amp; 5 &amp; 6\\
-7 &amp; 8 &amp; 9
-\end{array}
-\right]=
-\left[
-\begin{array}{cc}
-1 &amp; 2\\
-4 &amp; 5\\
-7 &amp; 8
-\end{array}
-\right]\left[
-\begin{array}{ccr}
-1 &amp; 0 &amp; -1\\
-0 &amp; 1 &amp; 2
-\end{array}
-\right].
-\]</span></p>
-<p><strong>Example:</strong> CMR expression <span class="math display">\[
-\left[
-\begin{array}{ccc}
-1 &amp; 2 &amp; 3\\
-4 &amp; 5 &amp; 6\\
-7 &amp; 8 &amp; 9
-\end{array}
-\right]=
-\left[
-\begin{array}{cc}
-1 &amp; 2\\
-4 &amp; 5\\
-7 &amp; 8
-\end{array}
-\right]\left[
-\begin{array}{rr}
--\frac{5}{3} &amp; \frac{2}{3}\\
-\frac{4}{3} &amp; -\frac{1}{3}
-\end{array}
-\right]\left[
-\begin{array}{ccc}
-1 &amp; 2 &amp; 3\\
-4 &amp; 5 &amp; 6
-\end{array}
-\right].
-\]</span></p>
-</div>
-<div id="matrix-multiplication" class="section level2">
-<h2><span class="header-section-number">1.8</span> Matrix multiplication</h2>
-<p>Let <span class="math display">\[
-{\boldsymbol A}_{m\times n}=[a_{ij}],
-\]</span> and <span class="math display">\[
-{\boldsymbol B}_{n\times p}=[b_{ij}].
-\]</span></p>
-<p>Two pictures of matrix multiplication:</p>
-<ul>
-<li><p>row times column <span class="math display">\[
-{\boldsymbol AB}=[c_{ij}],
-\]</span> where <span class="math display">\[
-c_{ij}=\sum_{k=1}^n a_{ik}b_{kj}.
-\]</span></p></li>
-<li><p>column times row <span class="math display">\[
-{\boldsymbol AB}=\left[{\boldsymbol a}_1, \ldots, {\boldsymbol a}_n\right]\left[
-\begin{array}{c}
-{\boldsymbol b}_1^T\\
-\vdots\\
-{\boldsymbol b}_n^T
-\end{array}
-\right]=\sum_{i=1}^n{\boldsymbol a}_i{\boldsymbol b}_i^T.
-\]</span> Note that <span class="math display">\[
-\hbox{rank}({\boldsymbol a}_i{\boldsymbol b}_i^T)\le 1,\ \hbox{for}\ i=1, \ldots, n.
-\]</span></p></li>
-</ul>
-<p><strong>Example:</strong> <span class="math inline">\({\boldsymbol S}_{n\times n}\)</span> is a symmetric matrix. Then <span class="math display">\[
-\begin{align}
-{\boldsymbol S}&amp;={\boldsymbol Q}
-\left[
-\begin{array}{ccc}
-\lambda_1 &amp;  &amp;\\
-&amp; \ddots &amp;\\
-&amp;&amp;\lambda_n
-\end{array}
-\right]{\boldsymbol Q}^T\\
-&amp;=\left[
-\lambda_1{\boldsymbol q}_1, \ldots, \lambda_n{\boldsymbol q}_n\right]\left[
-\begin{array}{c}
-{\boldsymbol q}_1^T,\\
-\vdots,\\
-{\boldsymbol q}_n^T
-\end{array}
-\right]\\
-&amp;=\sum_{i=1}^n\lambda_i{\boldsymbol q}_i{\boldsymbol q}_i^T,
-\end{align}
-\]</span> where <span class="math inline">\(\lambda_i\)</span> and <span class="math inline">\({\boldsymbol q}_i\)</span> are the <span class="math inline">\(i\)</span>th eigenvalue and eigenvector of <span class="math inline">\({\boldsymbol S}\)</span>, respectively.</p>
-
-</div>
+<div id="page-not-found" class="section level1">
+<h1>Page not found</h1>
+<p>The page you requested cannot be found (perhaps it was moved or renamed).</p>
+<p>You may want to try searching to find the page's new location, or use
+the table of contents to find the page you are looking for.</p>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="the-four-subspaces.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+
+
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
